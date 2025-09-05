@@ -8,3 +8,68 @@ page-layout: article
 A time series is any sequence of measurements taken at regular, equally spaced intervals—seconds, minutes, hours, days, months, quarters, or years. Common examples include weather (daily temperature or rainfall), financial markets (daily stock prices or returns), industry indicators (monthly production or sales), electricity demand, traffic counts, and hospital admissions. In time-series analysis we study how these values evolve: their level, trend, seasonal or calendar patterns (e.g., weekdays vs. weekends, holiday effects), cycles, and anomalies. Typical goals are to describe behavior clearly, forecast future values, and quantify the impact of events or policies.
 
 Because observations are ordered in time, nearby points tend to be correlated (autocorrelation). This violates the independent-and-identically-distributed assumption behind many standard statistical methods, so naïve cross-sectional tools often mislead. Time-series work must explicitly handle dependence, trend, and seasonality—for example by differencing, seasonal adjustment, and models that use lagged values and errors (e.g., ARIMA/SARIMA, ARIMAX/SARIMAX with external drivers, VAR for multiple series, state-space/ETS, or GARCH when volatility changes over time). Analysts also watch for structural breaks (e.g., policy shifts, COVID), outliers, and missing periods, and they evaluate models with time-aware validation (rolling or blocked splits) rather than random shuffles.
+
+
+## Project Idea: Volatility Spillovers Across Asset Classes
+
+Crypto → Equity Spillovers
+
+Outcomes: Daily return volatility of Bitcoin, Ethereum, altcoin index, and S&P 500.
+
+Covariates: Trading volume, Fed policy announcements, macro uncertainty indices.
+
+Models: VAR-based Diebold–Yilmaz connectedness index; Interrupted Time Series (ITS) around shocks like FTX collapse or major Fed hikes.
+
+Crypto → Commodities (Digital Gold Hypothesis)
+
+Outcomes: BTC–Gold return correlations, BTC–Oil volatility interactions.
+
+Covariates: Inflation announcements, commodity price shocks, geopolitical events.
+
+Models: DCC-GARCH to track time-varying correlations; BEKK-GARCH for volatility transmission direction.
+
+Crypto → Volatility Index (Fear Gauge)
+
+Outcomes: Spillovers between Bitcoin volatility and the VIX index (equity “fear gauge”).
+
+Covariates: S&P 500 returns, macro policy shocks, crypto-specific crashes.
+
+Models: Threshold-GARCH to capture nonlinear effects; VAR event studies around high-volatility windows.
+
+Frequency Decomposition of Spillovers
+
+Outcomes: Short-run vs. long-run volatility spillovers across BTC, ETH, S&P500, Gold, and VIX.
+
+Covariates: Same core series, separated into frequency bands.
+
+Models: Baruník–Křehlík frequency connectedness to show whether crypto influence is trader-driven (short-term) or macro-driven (long-term).
+
+Time-Varying Connectedness
+
+Outcomes: Net transmitter vs. net receiver roles of BTC and ETH during calm vs. crisis periods (COVID crash, Terra/FTX collapse, banking stress).
+
+Covariates: Event dummies for stress regimes.
+
+Models: TVP-VAR connectedness (time-varying without rolling windows); structural break tests.
+
+Stablecoins and Market Stability
+
+Outcomes: USDT/USDC de-pegging episodes, before/after volatility in broader crypto markets.
+
+Covariates: Stablecoin volume, liquidity shocks, macro stress events.
+
+Models: Interrupted Time Series around de-peg dates; ARIMAX with stablecoin activity as an exogenous regressor.
+
+Research Papers
+
+Diebold & Yilmaz (2012): Better to Give than to Receive: Predictive Directional Measurement of Volatility Spillovers — foundational connectedness index.
+
+Engle (2002): Dynamic Conditional Correlation: A Simple Class of Multivariate GARCH Models — for evolving correlations.
+
+Engle & Kroner (1995): Multivariate Simultaneous GARCH — BEKK parameterization for volatility spillovers.
+
+Baruník & Křehlík (2018): Measuring the Frequency Dynamics of Financial Connectedness — short-run vs long-run spillover methods.
+
+Antonakakis & Gabauer (2017, 2018): Time-Varying Parameter VAR-based Connectedness Measures — dynamic connectedness without rolling windows.
+
+Recent empirical studies show that crypto shocks spill into equities, commodities, bonds, and volatility indices, especially during stress periods (COVID, 2022 crashes, Fed rate hikes).
